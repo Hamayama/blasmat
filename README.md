@@ -31,12 +31,12 @@
    ＜MSYS2/MinGW-w64 (64bit) 環境の場合＞  
    プログラムメニューから MSYS2 の MinGW 64bit Shell を起動して、以下のコマンドを実行します。
    ```
-     pacman -S mingw-w64-i686-openblas
+     pacman -S mingw-w64-x86_64-openblas
    ```
    ＜MSYS2/MinGW-w64 (32bit) 環境の場合＞  
    プログラムメニューから MSYS2 の MinGW 32bit Shell を起動して、以下のコマンドを実行します。
    ```
-     pacman -S mingw-w64-x86_64-openblas
+     pacman -S mingw-w64-i686-openblas
    ```
 
 4. ファイルのダウンロード  
@@ -91,11 +91,11 @@
 
   - `(blas-array-daxpy A B alpha)`  
     行列A, B と 実数alpha に対して、  
-    B = alpha A + B を計算して返します (行列 B は変更されます)。
+    B = alpha A + B を計算して返します (行列B は変更されます)。
 
   - `(blas-array-dgemm A B C alpha beta)`  
     行列A, B, C と 実数alpha, beta に対して、  
-    C = alpha A B + beta C を計算して返します (行列 C は変更されます)。
+    C = alpha A B + beta C を計算して返します (行列C は変更されます)。
 
 
 ## 注意事項

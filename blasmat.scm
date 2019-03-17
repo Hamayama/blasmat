@@ -56,9 +56,6 @@
 ;; == ここから 公開I/F ==
 
 ;; B = alpha A + B を計算
-;;   A     : 行列 (サイズは 1 x n)
-;;   B     : 行列 (サイズは 1 x n)
-;;   alpha : スカラー
 (define-method blas-array-daxpy ((A <f64array>)
                                  (B <f64array>)
                                  (alpha <real>))
@@ -75,11 +72,6 @@
     B))
 
 ;; C = alpha A B + beta C を計算
-;;   A     : 行列 (サイズは m x k)
-;;   B     : 行列 (サイズは k x n)
-;;   C     : 行列 (サイズは m x n)
-;;   alpha : スカラー
-;;   beta  : スカラー
 (define-method blas-array-dgemm ((A <f64array>)
                                  (B <f64array>)
                                  (C <f64array>)
