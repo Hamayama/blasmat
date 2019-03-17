@@ -1,0 +1,36 @@
+;;;
+;;; blasmatlib.stub
+;;;
+
+"
+#include \"blasmat.h\"
+"
+
+;; The following entry is a dummy one.
+;; Replace it for your definitions.
+
+;(define-cproc test-blasmat () ::<const-cstring>
+;  (result "blasmat is working"))
+(define-cproc test-blasmat ()
+  (result (test_blasmat)))
+
+(define-cproc blas-matrix-daxpy (data1::<f64vector>
+                                 data2::<f64vector>
+                                 n::<int> alpha::<double>) ::<boolean>
+  (result (blas_matrix_daxpy (cast (double*) (SCM_F64VECTOR_ELEMENTS data1))
+                             (cast (double*) (SCM_F64VECTOR_ELEMENTS data2))
+                             n alpha)))
+
+(define-cproc blas-matrix-dgemm (data1::<f64vector>
+                                 data2::<f64vector>
+                                 data3::<f64vector>
+                                 m::<int> n::<int> k::<int>
+                                 alpha::<double> beta::<double>) ::<boolean>
+  (result (blas_matrix_dgemm (cast (double*) (SCM_F64VECTOR_ELEMENTS data1))
+                             (cast (double*) (SCM_F64VECTOR_ELEMENTS data2))
+                             (cast (double*) (SCM_F64VECTOR_ELEMENTS data3))
+                             m n k alpha beta)))
+
+;; Local variables:
+;; mode: scheme
+;; end:
