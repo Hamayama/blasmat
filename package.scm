@@ -4,7 +4,7 @@
 
 (define-gauche-package "blasmat"
   ;; 
-  :version "1.00"
+  :version "1.01"
 
   ;; Description of the package.  The first line is used as a short
   ;; summary.

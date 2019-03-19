@@ -1,7 +1,7 @@
 ;; -*- coding: utf-8 -*-
 ;;
 ;; blasmat.scm
-;; 2019-3-17 v1.00
+;; 2019-3-19 v1.01
 ;;
 ;; ＜内容＞
 ;;   Gauche で、OpenBLAS ライブラリを使って行列の高速演算を行うためのモジュールです。
@@ -46,9 +46,6 @@
 ;; 行列の次元数のチェック
 (define-syntax check-array-rank
   (syntax-rules ()
-    ((_ A)
-     (unless (= (array-rank A) 2)
-       (error "array rank must be 2")))
     ((_ A B ...)
      (unless (= (array-rank A) (array-rank B) ... 2)
        (error "array rank must be 2")))))
