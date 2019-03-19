@@ -14,6 +14,15 @@
       (and (eq? (class-of a) (class-of b))
            (array-equal? a b nearly=?))))
 
+;; for Gauche v0.9.4
+(define f64array
+  (if (global-variable-bound? 'gauche.array 'f64array)
+    (with-module gauche.array f64array)
+    (lambda (shape . inits)
+      (rlet1 ar (make-f64array shape 0)
+        (f64vector-copy! (slot-ref ar 'backing-storage)
+                         0 (list->f64vector inits))))))
+
 (test-start "blasmat")
 (use blasmat)
 (test-module 'blasmat)
@@ -45,6 +54,7 @@
 (test* "blas-array-dgemm 2" G1
        (blas-array-dgemm G1 G2 G3 1.0 1.0))
 
+;; summary
 (format (current-error-port) "~%~a" ((with-module gauche.test format-summary)))
 
 ;; If you don't want `gosh' to exit with nonzero status even if
