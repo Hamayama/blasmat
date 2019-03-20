@@ -93,9 +93,15 @@
     行列A, B と 実数alpha に対して、  
     B = alpha A + B を計算して返します (行列B は変更されます)。
 
-  - `(blas-array-dgemm A B C alpha beta)`  
+  - `(blas-array-dgemm A B C alpha beta [trans-A] [trans-B])`  
     行列A, B, C と 実数alpha, beta に対して、  
-    C = alpha A B + beta C を計算して返します (行列C は変更されます)。
+    C = alpha A B + beta C を計算して返します (行列C は変更されます)。  
+    trans-A に #t を指定すると、行列A を転置してから計算を行います。  
+    trans-A に #f を指定すると、行列A を転置しません。  
+    trans-A は省略可能です。省略した場合は #f を指定したことになります。  
+    trans-B に #t を指定すると、行列B を転置してから計算を行います。  
+    trans-B に #f を指定すると、行列B を転置しません。  
+    trans-B は省略可能です。省略した場合は #f を指定したことになります。
 
 
 ## 注意事項
@@ -117,6 +123,7 @@
 ## 履歴
 - 2019-3-17  v1.00 (初版)
 - 2019-3-19  v1.01 不要処理削除
+- 2019-3-20  v1.02 blas-array-dgemm に転置指定の引数を追加
 
 
-(2019-3-19)
+(2019-3-20)

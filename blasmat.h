@@ -21,7 +21,8 @@ extern ScmObj test_blasmat(void);
 int blas_matrix_daxpy(double* data1, double* data2, int n, double alpha);
 
 int blas_matrix_dgemm(double* data1, double* data2, double* data3,
-                      int m, int n, int k, double alpha, double beta);
+                      int m, int n, int k, double alpha, double beta,
+                      int trans1, int trans2);
 
 /* Epilogue */
 SCM_DECL_END

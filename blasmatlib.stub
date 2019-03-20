@@ -25,11 +25,12 @@
                                  data2::<f64vector>
                                  data3::<f64vector>
                                  m::<int> n::<int> k::<int>
-                                 alpha::<double> beta::<double>) ::<boolean>
+                                 alpha::<double> beta::<double>
+                                 trans1::<int> trans2::<int>) ::<boolean>
   (result (blas_matrix_dgemm (cast (double*) (SCM_F64VECTOR_ELEMENTS data1))
                              (cast (double*) (SCM_F64VECTOR_ELEMENTS data2))
                              (cast (double*) (SCM_F64VECTOR_ELEMENTS data3))
-                             m n k alpha beta)))
+                             m n k alpha beta trans1 trans2)))
 
 ;; Local variables:
 ;; mode: scheme

@@ -1,7 +1,7 @@
 ;; -*- coding: utf-8 -*-
 ;;
 ;; blasmat.scm
-;; 2019-3-19 v1.01
+;; 2019-3-20 v1.02
 ;;
 ;; ＜内容＞
 ;;   Gauche で、OpenBLAS ライブラリを使って行列の高速演算を行うためのモジュールです。
@@ -73,7 +73,8 @@
                                  (B <f64array>)
                                  (C <f64array>)
                                  (alpha <real>)
-                                 (beta  <real>))
+                                 (beta  <real>)
+                                 :optional (trans-A #f) (trans-B #f))
   (check-array-rank A B C)
   (let ((data1 (slot-ref A 'backing-storage))
         (n1    (array-length A 0))
@@ -83,9 +84,15 @@
         (m2    (array-length B 1))
         (data3 (slot-ref C 'backing-storage))
         (n3    (array-length C 0))
-        (m3    (array-length C 1)))
+        (m3    (array-length C 1))
+        (temp  0))
+    (when trans-A
+      (set! temp n1) (set! n1 m1) (set! m1 temp))
+    (when trans-B
+      (set! temp n2) (set! n2 m2) (set! m2 temp))
     (unless (and (= m1 n2) (= n1 n3) (= m2 m3))
       (error "array shape mismatch"))
-    (blas-matrix-dgemm data1 data2 data3 n1 m2 m1 alpha beta)
+    (blas-matrix-dgemm data1 data2 data3 n1 m2 m1 alpha beta
+                       (if trans-A 1 0) (if trans-B 1 0))
     C))
 

@@ -48,10 +48,17 @@ int blas_matrix_daxpy(double* data1, double* data2, int n, double alpha) {
 //   alpha : スカラー
 //   beta  : スカラー
 int blas_matrix_dgemm(double* data1, double* data2, double* data3,
-                      int m, int n, int k, double alpha, double beta) {
+                      int m, int n, int k, double alpha, double beta,
+                      int trans1, int trans2) {
     if (m < 0 || n < 0 || k < 0) return FALSE;
-    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
-                m, n, k, alpha, data1, k, data2, n, beta, data3, n);
+    cblas_dgemm(CblasRowMajor,
+                (trans1 ? CblasTrans : CblasNoTrans),
+                (trans2 ? CblasTrans : CblasNoTrans),
+                m, n, k, alpha,
+                data1, (trans1 ? m : k),
+                data2, (trans2 ? k : n),
+                beta,
+                data3, n);
     return TRUE;
 }
 
