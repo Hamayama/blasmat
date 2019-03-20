@@ -80,7 +80,7 @@
     (define A (f64array (shape 0 2 0 2) 1 2 3 4))     ; 2x2 の 行列A を作成します。
     (define B (f64array (shape 0 2 0 2) 5 6 7 8))     ; 2x2 の 行列B を作成します。
     (define C (f64array (shape 0 2 0 2) 10 20 30 40)) ; 2x2 の 行列C を作成します。
-    (blas-array-dgemm A B C 1.0 1.0))                 ; C = AB + C を計算します。
+    (blas-array-dgemm A B C 1.0 1.0 #f #f)            ; C = AB + C を計算します。
     (print C)                 ; 行列C の内容を表示します。
     (print (array-ref C 0 0)) ; 行列C の左上の要素の値を表示します。
     (print (array-ref C 0 1)) ; 行列C の右上の要素の値を表示します。
@@ -93,15 +93,13 @@
     行列A, B と 実数alpha に対して、  
     B = alpha A + B を計算して返します (行列B は変更されます)。
 
-  - `(blas-array-dgemm A B C alpha beta [trans-A] [trans-B])`  
+  - `(blas-array-dgemm A B C alpha beta trans-A trans-B)`  
     行列A, B, C と 実数alpha, beta に対して、  
     C = alpha A B + beta C を計算して返します (行列C は変更されます)。  
     trans-A に #t を指定すると、行列A を転置してから計算を行います。  
     trans-A に #f を指定すると、行列A を転置しません。  
-    trans-A は省略可能です。省略した場合は #f を指定したことになります。  
     trans-B に #t を指定すると、行列B を転置してから計算を行います。  
-    trans-B に #f を指定すると、行列B を転置しません。  
-    trans-B は省略可能です。省略した場合は #f を指定したことになります。
+    trans-B に #f を指定すると、行列B を転置しません。
 
 
 ## 注意事項
@@ -124,6 +122,7 @@
 - 2019-3-17  v1.00 (初版)
 - 2019-3-19  v1.01 不要処理削除
 - 2019-3-20  v1.02 blas-array-dgemm に転置指定の引数を追加
+- 2019-3-20  v1.03 blas-array-dgemm の転置指定の引数を必須に変更(遅くなったため)
 
 
 (2019-3-20)
