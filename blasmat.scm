@@ -1,7 +1,7 @@
 ;; -*- coding: utf-8 -*-
 ;;
 ;; blasmat.scm
-;; 2019-3-21 v1.04
+;; 2019-3-21 v1.05
 ;;
 ;; ＜内容＞
 ;;   Gauche で、OpenBLAS ライブラリを使って行列の高速演算を行うためのモジュールです。
@@ -18,8 +18,8 @@
   (use gauche.version)
   (export
     test-blasmat
-    blas-array-daxpy
-    blas-array-dgemm
+    blas-array-daxpy!
+    blas-array-dgemm!
     ))
 (select-module blasmat)
 
@@ -61,9 +61,9 @@
 ;; == ここから 公開I/F ==
 
 ;; B = alpha A + B を計算
-(define-method blas-array-daxpy ((A <f64array>)
-                                 (B <f64array>)
-                                 (alpha <real>))
+(define-method blas-array-daxpy! ((A <f64array>)
+                                  (B <f64array>)
+                                  (alpha <real>))
   (check-array-rank A B)
   (let ((data1 (slot-ref A 'backing-storage))
         (n1    (array-length A 0))
@@ -77,13 +77,13 @@
     B))
 
 ;; C = alpha A B + beta C を計算
-(define-method blas-array-dgemm ((A <f64array>)
-                                 (B <f64array>)
-                                 (C <f64array>)
-                                 (alpha <real>)
-                                 (beta  <real>)
-                                 (trans-A <boolean>)
-                                 (trans-B <boolean>))
+(define-method blas-array-dgemm! ((A <f64array>)
+                                  (B <f64array>)
+                                  (C <f64array>)
+                                  (alpha <real>)
+                                  (beta  <real>)
+                                  (trans-A <boolean>)
+                                  (trans-B <boolean>))
   (check-array-rank A B C)
   (let ((data1 (slot-ref A 'backing-storage))
         (n1    (array-length A 0))

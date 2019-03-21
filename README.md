@@ -80,7 +80,7 @@
     (define A (f64array (shape 0 2 0 2) 1 2 3 4))     ; 2x2 の 行列A を作成します。
     (define B (f64array (shape 0 2 0 2) 5 6 7 8))     ; 2x2 の 行列B を作成します。
     (define C (f64array (shape 0 2 0 2) 10 20 30 40)) ; 2x2 の 行列C を作成します。
-    (blas-array-dgemm A B C 1.0 1.0 #f #f)            ; C = AB + C を計算します。
+    (blas-array-dgemm! A B C 1.0 1.0 #f #f)           ; C = AB + C を計算します。
     (print C)                 ; 行列C の内容を表示します。
     (print (array-ref C 0 0)) ; 行列C の左上の要素の値を表示します。
     (print (array-ref C 0 1)) ; 行列C の右上の要素の値を表示します。
@@ -89,11 +89,11 @@
   (現状、本モジュールは、標準の gauhce.array モジュールにおける  
   2次元の f64array の ごく一部の演算のみが可能です。)
 
-  - `(blas-array-daxpy A B alpha)`  
+  - `(blas-array-daxpy! A B alpha)`  
     行列A, B と 実数alpha に対して、  
     B = alpha A + B を計算して返します (行列B は変更されます)。
 
-  - `(blas-array-dgemm A B C alpha beta trans-A trans-B)`  
+  - `(blas-array-dgemm! A B C alpha beta trans-A trans-B)`  
     行列A, B, C と 実数alpha, beta に対して、  
     C = alpha A B + beta C を計算して返します (行列C は変更されます)。  
     trans-A に #t を指定すると、行列A を転置してから計算を行います。  
@@ -123,6 +123,7 @@
 - 2019-3-20  v1.02 blas-array-dgemm に転置指定の引数を追加
 - 2019-3-20  v1.03 blas-array-dgemm の転置指定の引数を必須に変更(遅くなったため)
 - 2019-3-21  v1.04 行列の情報取得をマクロ化
+- 2019-3-21  v1.05 手続き名に`!`を追加
 
 
 (2019-3-21)
