@@ -1,7 +1,7 @@
 ;; -*- coding: utf-8 -*-
 ;;
 ;; blasmat.scm
-;; 2019-3-21 v1.05
+;; 2019-3-21 v1.06
 ;;
 ;; ＜内容＞
 ;;   Gauche で、OpenBLAS ライブラリを使って行列の高速演算を行うためのモジュールです。
@@ -61,9 +61,9 @@
 ;; == ここから 公開I/F ==
 
 ;; B = alpha A + B を計算
-(define-method blas-array-daxpy! ((A <f64array>)
-                                  (B <f64array>)
-                                  (alpha <real>))
+(define-method blas-array-daxpy! ((alpha <real>)
+                                  (A <f64array>)
+                                  (B <f64array>))
   (check-array-rank A B)
   (let ((data1 (slot-ref A 'backing-storage))
         (n1    (array-length A 0))

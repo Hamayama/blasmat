@@ -89,17 +89,18 @@
   (現状、本モジュールは、標準の gauhce.array モジュールにおける  
   2次元の f64array の ごく一部の演算のみが可能です。)
 
-  - `(blas-array-daxpy! A B alpha)`  
-    行列A, B と 実数alpha に対して、  
+  - `(blas-array-daxpy! alpha A B)`  
+    実数alpha と 行列A, B に対して、  
     B = alpha A + B を計算して返します (行列B は変更されます)。
 
   - `(blas-array-dgemm! A B C alpha beta trans-A trans-B)`  
     行列A, B, C と 実数alpha, beta に対して、  
-    C = alpha A B + beta C を計算して返します (行列C は変更されます)。  
-    trans-A に #t を指定すると、行列A を転置してから計算を行います。  
+    C = alpha A B + beta C を計算して返します。  
+    trans-A に #t を指定すると、行列A を転置して計算を行います。  
     trans-A に #f を指定すると、行列A を転置しません。  
-    trans-B に #t を指定すると、行列B を転置してから計算を行います。  
-    trans-B に #f を指定すると、行列B を転置しません。
+    trans-B に #t を指定すると、行列B を転置して計算を行います。  
+    trans-B に #f を指定すると、行列B を転置しません。  
+    (行列A, B は変更されません。行列C は変更されます)
 
 
 ## 注意事項
@@ -124,6 +125,7 @@
 - 2019-3-20  v1.03 blas-array-dgemm の転置指定の引数を必須に変更(遅くなったため)
 - 2019-3-21  v1.04 行列の情報取得をマクロ化
 - 2019-3-21  v1.05 手続き名に`!`を追加
+- 2019-3-21  v1.06 blas-array-daxpy! の引数順変更
 
 
 (2019-3-21)

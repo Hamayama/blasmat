@@ -35,12 +35,12 @@
 (define A  (f64array (shape 0 2 0 3)  1  2  3  4  5  6))
 (define B  (f64array (shape 0 2 0 3)  7  8  9 10 11 12))
 (test* "blas-array-daxpy! 1" #,(<f64array> (0 2 0 3) 9 12 15 18 21 24)
-       (blas-array-daxpy! A B 2.0) array-nearly=?)
+       (blas-array-daxpy! 2.0 A B) array-nearly=?)
 
 (define G1 (f64array (shape 0 0 0 0)))
 (define G2 (f64array (shape 0 0 0 0)))
 (test* "blas-array-daxpy! 2" G1
-       (blas-array-daxpy! G1 G2 1.0))
+       (blas-array-daxpy! 1.0 G1 G2))
 
 (define A  (f64array (shape 0 2 0 3)  1  2  3  4  5  6))
 (define B  (f64array (shape 0 3 0 2)  7  8  9 10 11 12))
