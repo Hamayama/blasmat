@@ -63,6 +63,7 @@
      make check    # テストを実行します
    ```
    (注意) Windows の環境によっては、make install を実行すると  
+   「gauche-install: no write permission of ...」もしくは  
    「*** ERROR: mkstemp failed」というエラーが発生します。  
    このエラーは、インストール先のフォルダに書き込み権限がないとき等に発生します。  
    その場合には、プログラムメニューからの開発環境の起動時に右クリックして、  
@@ -112,11 +113,13 @@
 - OS
   - Windows 8.1 (64bit)
 - 環境
-  - MSYS2/MinGW-w64 (64bit/32bit) (gcc version 7.3.0 (Rev2, Built by MSYS2 project))
+  - MSYS2/MinGW-w64 (64bit/32bit) (gcc version 9.2.0 (Rev2, Built by MSYS2 project))
 - 言語
+  - Gauche v0.9.9
+  - Gauche v0.9.8
   - Gauche v0.9.7
 - ライブラリ
-  - OpenBLAS v0.3.0
+  - OpenBLAS v0.3.7
 
 ## 履歴
 - 2019-3-17  v1.00 (初版)
@@ -126,6 +129,7 @@
 - 2019-3-21  v1.04 行列の情報取得をマクロ化
 - 2019-3-21  v1.05 手続き名に`!`を追加
 - 2019-3-21  v1.06 blas-array-daxpy! の引数順変更
+- 2020-1-5   v1.06 README修正のみ(Gauche v0.9.9 で動作確認)
 
 
-(2019-3-23)
+(2020-1-5)
