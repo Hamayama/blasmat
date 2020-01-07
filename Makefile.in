@@ -18,7 +18,7 @@ INSTALL        = "@GAUCHE_INSTALL@" -C
 
 CFLAGS   = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@ @DEF_UNICODE@
-LDFLAGS  = @LDFLAGS@ -static-libstdc++
+LDFLAGS  = @LDFLAGS@
 LIBS     = @LIBS@ -Wl,-dn,-lopenblas,-dy
 
 # Other parameters
