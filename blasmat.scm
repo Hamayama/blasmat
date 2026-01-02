@@ -1,7 +1,7 @@
 ;; -*- coding: utf-8 -*-
 ;;
 ;; blasmat.scm
-;; 2019-3-21 v1.06
+;; 2026-1-2 v1.07
 ;;
 ;; ＜内容＞
 ;;   Gauche で、OpenBLAS ライブラリを使って行列の高速演算を行うためのモジュールです。
@@ -31,25 +31,6 @@
 ;;
 
 ;; == 内部処理用 ==
-
-;; 行列の情報取得(エラーチェックなし)
-(define-syntax array-rank
-  (syntax-rules ()
-    ((_ A)
-     (s32vector-length (slot-ref A 'start-vector)))))
-(define-syntax array-start
-  (syntax-rules ()
-    ((_ A dim)
-     (s32vector-ref    (slot-ref A 'start-vector) dim))))
-(define-syntax array-end
-  (syntax-rules ()
-    ((_ A dim)
-     (s32vector-ref    (slot-ref A 'end-vector)   dim))))
-(define-syntax array-length
-  (syntax-rules ()
-    ((_ A dim)
-     (- (s32vector-ref (slot-ref A 'end-vector)   dim)
-        (s32vector-ref (slot-ref A 'start-vector) dim)))))
 
 ;; 行列の次元数のチェック
 (define-syntax check-array-rank

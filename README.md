@@ -108,6 +108,7 @@
 1. 本モジュールは、標準の gauche.array モジュールの内部情報を使用しています。  
    このため、Gauche の将来の変更で動作しなくなる可能性があります。
 
+2. gauche.array モジュールの share-array 機能には未対応です。
 
 ## 参考情報
 1. より汎用的な行列演算モジュールである f2arrmat ( https://github.com/Hamayama/f2arrmat ) は、  
@@ -116,14 +117,18 @@
 
 ## 環境等
 - OS
+  - Windows 11 25H2 (64bit)
   - Windows 8.1 (64bit)
 - 環境
+  - MSYS2/MinGW-w64 UCRT64 (64bit) (gcc version 15.2.0 (Rev8, Built by MSYS2 project))
   - MSYS2/MinGW-w64 (64bit/32bit) (gcc version 9.2.0 (Rev2, Built by MSYS2 project))
 - 言語
+  - Gauche v0.9.16_pre2
   - Gauche v0.9.9
   - Gauche v0.9.8
   - Gauche v0.9.7
 - ライブラリ
+  - OpenBLAS v0.3.30
   - OpenBLAS v0.3.7
 
 ## 履歴
@@ -136,6 +141,7 @@
 - 2019-3-21  v1.06 blas-array-daxpy! の引数順変更
 - 2020-1-5   v1.06 README修正のみ(Gauche v0.9.9 で動作確認)
 - 2020-1-7   v1.06 Makefile.in変更
+- 2026-1-2   v1.07 環境更新
 
 
-(2020-1-8)
+(2026-1-2)

@@ -19,7 +19,7 @@ INSTALL        = "@GAUCHE_INSTALL@" -C
 CFLAGS   = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@ @DEF_UNICODE@
 LDFLAGS  = @LDFLAGS@
-LIBS     = @LIBS@ -Wl,-dn,-lopenblas,-dy
+LIBS     = @LIBS@ -Wl,-dn,-lopenblas,-dy -fopenmp
 
 # Other parameters
 SOEXT  = @SOEXT@
