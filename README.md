@@ -110,6 +110,7 @@
 
 2. gauche.array モジュールの share-array 機能には未対応です。
 
+
 ## 参考情報
 1. より汎用的な行列演算モジュールである f2arrmat ( https://github.com/Hamayama/f2arrmat ) は、  
    本モジュールが存在すれば、内部で使用します (一部の演算が高速化されます)。
