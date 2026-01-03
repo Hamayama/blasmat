@@ -1,7 +1,7 @@
 ;; -*- coding: utf-8 -*-
 ;;
 ;; blasmat.scm
-;; 2026-1-2 v1.07
+;; 2026-1-3 v1.08
 ;;
 ;; ＜内容＞
 ;;   Gauche で、OpenBLAS ライブラリを使って行列の高速演算を行うためのモジュールです。
@@ -31,6 +31,30 @@
 ;;
 
 ;; == 内部処理用 ==
+
+;; Gauche 0.9.16_pre1 で、gauche.array の内部処理が変わった件の対応
+(define *gauche-0.9.15-or-earlier*
+  (version<=? (gauche-version) "0.9.15"))
+(select-module gauche.array)
+(define *gauche-0.9.15-or-earlier*
+  (with-module blasmat *gauche-0.9.15-or-earlier*))
+(select-module blasmat)
+
+;; gauche.array の内部処理を上書き(高速化)(エラーチェックなし)
+(select-module gauche.array)
+(define-macro (%define-array-rank-function)
+  (when *gauche-0.9.15-or-earlier*
+    `(define (array-rank A)
+       (s32vector-length (slot-ref A 'start-vector)))))
+(%define-array-rank-function)
+(define (array-start  A dim)
+  (s32vector-ref (slot-ref A 'start-vector) dim))
+(define (array-end    A dim)
+  (s32vector-ref (slot-ref A 'end-vector)   dim))
+(define (array-length A dim)
+  (- (s32vector-ref (slot-ref A 'end-vector)   dim)
+     (s32vector-ref (slot-ref A 'start-vector) dim)))
+(select-module blasmat)
 
 ;; 行列の次元数のチェック
 (define-syntax check-array-rank
